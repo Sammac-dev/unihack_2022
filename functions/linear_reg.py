@@ -84,6 +84,7 @@ class Ml:
     # Predicting from saved model uploaded as pkl or whatever it might take else give out an error statement to inform user
     def prediction(self):
         import pickle
+        import app
         try:
             file_name = self.prediction_filename
             model_reloaded = pickle.load(open(file_name, 'rb'))
@@ -91,6 +92,9 @@ class Ml:
             print(predicted)
             df_to_save = pd.DataFrame(predicted)
             df_to_save.to_csv("predicted_data.csv")
+
+            app.pred_out = "predicted_data.csv"
+            app.model_complete = True
         except Exception as e:
             print(e)
 

@@ -27,6 +27,12 @@ model_target = ""
 score = 0
 score2 = 0
 
+# global variables for prediction
+# also uses model_complete
+pred_in = ""
+pred_out = ""
+model_in = ""
+
 # mount the static directory
 app.mount('/static', StaticFiles(directory='./static'), name='static')
 # mount the templates directory
@@ -102,11 +108,27 @@ def training_complete(request: Request):
 def predict(request: Request):
     return templates.TemplateResponse('predict.html', {'request': request})
 
-@app.get('/predict')
+@app.post('/predict')
 async def predict(request: Request, background_tasks : BackgroundTasks, model_path : str = Form("model_path"), data_path : str = Form("data_path")):
+    
+    #Need to add error handling
 
+    global model_complete
+    global pred_in 
+    global model_in
 
-    pass
+    pred_in = data_path
+    model_in = model_path
+
+    model_complete = False
+
+    pred_load = Ml(filename=data_path)
+    pred_df = pred_load.read_csv()
+
+    predicting = Ml(pred_file_name=model_path, prediction_values=pred_df)
+    background_tasks.add_task(predicting.prediction)
+
+    return templates.TemplateResponse('predict-pending.html', {'request': request})
 
 
 
