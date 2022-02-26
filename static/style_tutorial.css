@@ -45,7 +45,7 @@ li{
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 100px 1fr 1fr 100px;
 
-    gap:10px; 
+    /* gap:10px;  */
     padding:10px;  
     box-sizing:border-box;
 }
