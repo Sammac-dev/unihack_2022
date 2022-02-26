@@ -64,22 +64,39 @@ grid-column-end: 4;
 
 
 
+
 .content-large {
     grid-row-start: 2;
     grid-row-end: span 2;
     grid-column-start: 1;
-    grid-column-end: 3;
+    grid-column-end: 2;
+    /* border: 1px solid #fff; */
 }
+
+.content-middle {
+    grid-row-start: 2;
+    grid-row-end: span 2;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    /* border: 1px solid #fff; */
+    margin-top: 10px;
+}
+
 
 .content-small {
     grid-row-start: 2;
     grid-row-end: span 2;
     grid-column-start: 3;
     grid-column-end: 4;
+    /* border: 1px solid #fff; */
 }
+
+
+
 .footer {
     grid-column-start: 1;
     grid-column-end: span 3;
+    border: 1px solid #fff; 
 }
 
 .button {
@@ -93,4 +110,21 @@ grid-column-end: 4;
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+    position: static;
+    margin-left: 20px;
   }
+
+  h1 {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    text-align: justify;
+}
+
+body{
+    background-image: "url('static', path='images/machine_learning.jpg')";
+}
