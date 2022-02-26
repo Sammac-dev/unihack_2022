@@ -49,7 +49,7 @@ def train(request: Request):
 
 @app.post('/train')
 async def train(request: Request, background_tasks : BackgroundTasks, model: str = Form("model"), filename:str = Form("filename"), 
-                testSize:float = Form("testSize"), target: str = Form("model")):
+                testSize:float = Form("testSize"), target: str = Form("target")):
     global ml_model
     global model_complete
     global in_file 
