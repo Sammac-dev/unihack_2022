@@ -44,17 +44,34 @@ async def train(request: Request, model: str, filename:str, train_size:float, ta
     load = Ml(filename=filename)
     df = load.read_csv()
     print(df)
-    if not df:
-        print("Error Reading file. Please check the name of the file.")
-    else:
-        ml = Ml(dataframe=df,target_column=target)
+
+    if not df.empty:
+        ml = Ml(dataframe=df, target_column=target)
         ml.load_x_y()
-        print(ml.x,ml.y)
-        if ml.x != 0 and ml.y != 0:
-           background_tasks.add_task(ml.training())
-           return templates.TemplateResponse('train.html', {'request': request})
+
+        if not ml.x.empty and not ml.y.empty:
+            background_tasks.add_task(ml.training())
+            return templates.TemplateResponse('train.html', {'request': request})
         else:
             print("Dataset doesn't have the target feature.")
+
+    else:
+        print("Error Reading file. Please check the name of the file.")
+
+
+
+
+    # if not df.empty:
+    #     print("Error Reading file. Please check the name of the file.")
+    # else:
+    #     ml = Ml(dataframe=df,target_column=target)
+    #     ml.load_x_y()
+    #     print(ml.x,ml.y)
+    #     if not ml.x.empty and not ml.y.empty:
+    #        background_tasks.add_task(ml.training())
+    #        return templates.TemplateResponse('train.html', {'request': request})
+    #     else:
+    #         print("Dataset doesn't have the target feature.")
 
 
 # Predict page
