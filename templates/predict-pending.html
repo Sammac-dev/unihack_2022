@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block body %}
+<link rel="stylesheet" href="{{url_for('static', path='style_predict_pending.css')}}" type="text/css" media="all"/> 
+
+<div class="container"> 
+
+    <h1>Please wait... Your model is predicting!</h1>
+    <p>
+        <!-- https://www.demilked.com/gif-animations-replace-loading-screen/  red loading -->
+        <img src= "{{url_for('static', path='images/loading_red.gif')}}" alt= "Loading" width="400px" height="250px">
+    </p>
+
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    // every 1000 interval, recheck via status_check page that model_complete is true or false
+    setInterval(function(){ 
+    //run this code on an interval
+    $.get("/status_check", function(model_complete){
+        console.log(model_complete);
+        // if true, redirect to displaying result page 
+        if (model_complete){
+            window.location.replace('/predict-complete');
+        }
+    })
+    }, 1000);
+</script>
+{% endblock %}

@@ -130,7 +130,12 @@ async def predict(request: Request, background_tasks : BackgroundTasks, model_pa
 
     return templates.TemplateResponse('predict-pending.html', {'request': request})
 
+@app.get('/predict-complete')
+def predict_complete(request: Request):
+    global model_complete
 
+    if model_complete is True:
+        return templates.TemplateResponse('predict-complete.html', {'request': request})
 
 if __name__ == '__main__':
     # runs the uvicorn web server for the application to run 
