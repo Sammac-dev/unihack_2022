@@ -1,5 +1,6 @@
 # import required libraries for program
 from fileinput import filename
+from statistics import mode
 from fastapi import FastAPI, Request, BackgroundTasks
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -16,6 +17,14 @@ import pandas as pd
 # initialise the application
 app = FastAPI()
 
+# initialize model_complete as False and confirmation page variables
+model_complete = False
+model = ""
+in_file = ""
+out_file = ""
+train_size = 0
+target = ""
+
 # mount the static directory
 app.mount('/static', StaticFiles(directory='./static'), name='static')
 # mount the templates directory
@@ -29,6 +38,9 @@ def index(request: Request):
 # Tutorial page
 @app.get('/tutorial')
 def tutorial(request: Request):
+    print("tutorial Page")
+    global model_complete
+    print("5",model_complete)
     return templates.TemplateResponse('tutorial.html', {'request': request})
 
 # Training page
@@ -38,16 +50,20 @@ def train(request: Request):
 
 @app.post('/train')
 async def train(request: Request, model: str, filename:str, train_size:float, target: str,background_tasks : BackgroundTasks):
+    global model_complete
+    # print("1",model_complete)
     print("Filename: ", filename)
     print("Train_size Type: ", type(train_size))
     load = Ml(filename=filename)
     df = load.read_csv()
-    print(df)
+    # print(df)
 
     if not df.empty:
         ml = Ml(dataframe=df, target_column=target)
         ml.load_x_y()
 
+        model_complete = False
+        print("2", model_complete)
         if not ml.x.empty and not ml.y.empty:
             background_tasks.add_task(ml.training)
             return templates.TemplateResponse('train-pending.html', {'request': request})
@@ -57,24 +73,9 @@ async def train(request: Request, model: str, filename:str, train_size:float, ta
     else:
         print("Error Reading file. Please check the name of the file.")
 
-# Pending page
-@app.get('/pending')
-def pending(request: Request):
-    return templates.TemplateResponse('train-pending.html', {'request': request})
-
-
-    # if not df.empty:
-    #     print("Error Reading file. Please check the name of the file.")
-    # else:
-    #     ml = Ml(dataframe=df,target_column=target)
-    #     ml.load_x_y()
-    #     print(ml.x,ml.y)
-    #     if not ml.x.empty and not ml.y.empty:
-    #        background_tasks.add_task(ml.training())
-    #        return templates.TemplateResponse('train.html', {'request': request})
-    #     else:
-    #         print("Dataset doesn't have the target feature.")
-
+@app.post('/training-complete')
+def training_complete(request: Request, model: str, in_file:str,out_file:str,train_size:float,target:str):
+    return templates.TemplateResponse('training-complete.html', {'request': request})
 
 # Predict page
 @app.get('/predict')

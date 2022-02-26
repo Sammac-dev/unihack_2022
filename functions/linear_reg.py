@@ -1,4 +1,5 @@
 import pandas as pd
+from starlette.responses import RedirectResponse
 
 
 # MAIN CLASS FOR LINEAR REGRESSION
@@ -44,6 +45,8 @@ class Ml:
     def training(self):
         from sklearn.model_selection import train_test_split
         from sklearn.linear_model import LinearRegression
+        # from app import model_complete
+        import app
         import pickle
 
         self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(self.x, self.y, test_size=self.test_size
@@ -55,7 +58,13 @@ class Ml:
         print("prediction complete")
         r2_score = self.score()
         print(r2_score)
-        return True
+
+        
+        print("3",app.model_complete)
+        app.model_complete = True
+        print("4", app.model_complete)
+        response = RedirectResponse(url='/tutorial')
+        
 
     def score(self):
         from sklearn.metrics import r2_score
