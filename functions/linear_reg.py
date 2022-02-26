@@ -56,13 +56,12 @@ class Ml:
         print("prediction complete")
         r2_score = self.score()
         print(r2_score)
+        rmse = self.score_rmse()
 
         app.score = r2_score # R Squared
-        app.score2 = 0 #RMSE
+        app.score2 = rmse #RMSE
         app.out_file = filename
         app.model_complete = True
-
-        
 
     def score(self):
         from sklearn.metrics import r2_score
@@ -70,7 +69,19 @@ class Ml:
         vod_r2 = r2_score(self.y_test, y_hat)
         return vod_r2
 
-# Predicting from saved model uploaded as pkl or whatever it might take else give out an error statement to inform user
+    def score_rmse(self):
+        import numpy as np
+        actual = self.y_test
+        predicted = self.regressor.predict(self.x_test)
+        diff = np.subtract(actual, predicted)
+        square = np.square(diff)
+        highest = max(diff)
+        MSE = square.mean()
+        RMSE = np.sqrt(MSE)/highest
+        print("Root Mean Square Error:", RMSE)
+        return RMSE
+
+    # Predicting from saved model uploaded as pkl or whatever it might take else give out an error statement to inform user
     def prediction(self):
         import pickle
         try:
@@ -97,12 +108,7 @@ if __name__ == '__main__':
         ml.load_x_y()
 
         if not ml.x.empty and not ml.y.empty:
-            train = ml.training()
-
-            if train:
-                print("Done!")
-            else:
-                print("Something is wrong.")
+            ml.training()
         else:
             print("Dataset doesn't have the target feature.")
 
