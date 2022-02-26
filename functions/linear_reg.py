@@ -50,10 +50,18 @@ class Ml:
                                                                                 , random_state=0)
         self.regressor = LinearRegression()
         self.regressor.fit(self.x_train, self.y_train)
-
         filename = 'Trained.pkl'
         pickle.dump(self.regressor, open(filename, 'wb'))
         print("prediction complete")
+        r2_score = self.score()
+        print(r2_score)
+        return True
+
+    def score(self):
+        from sklearn.metrics import r2_score
+        y_hat = self.regressor.predict(self.x_test)
+        vod_r2 = r2_score(self.y_test, y_hat)
+        return vod_r2
 
 # Predicting from saved model uploaded as pkl or whatever it might take else give out an error statement to inform user
     def prediction(self):
@@ -62,8 +70,9 @@ class Ml:
             file_name = self.prediction_filename
             model_reloaded = pickle.load(open(file_name, 'rb'))
             predicted  = model_reloaded.predict(self.prediction_values)
-            
             print(predicted)
+            df_to_save = pd.DataFrame(predicted)
+            df_to_save.to_csv("predicted_data.csv")
         except Exception as e:
             print(e)
 
@@ -75,19 +84,25 @@ if __name__ == '__main__':
     target = "Salary"  # The target name for the prediction From User's Input or passing it back
     load = Ml(filename=filename)
     df = load.read_csv()
+
     if not df.empty:
         ml = Ml(dataframe=df, target_column=target)
         ml.load_x_y()
 
         if not ml.x.empty and not ml.y.empty:
-            ml.training()
+            train = ml.training()
+
+            if train:
+                print("Done!")
+            else:
+                print("Something is wrong.")
         else:
             print("Dataset doesn't have the target feature.")
 
     else:
         print("Error Reading file. Please check the name of the file.")
 
-    # PREDCTION PART
+    # PREDICTION PART
 
     model_name = "Trained.pkl"  # User Uploaded file
     predicting_values = ml.x  # User predicting set of values
