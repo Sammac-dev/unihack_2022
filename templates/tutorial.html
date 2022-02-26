@@ -4,30 +4,46 @@
 
 <div class="container"> 
     <div class="content-large"> <br>
-        
-        <h2> Explain Data Science  </h2>
-
-        <p> Why will this be useful to your business </p>
-        <p> How will it help your business </p>
-        <p> What you need to understand </p>
-
-        <br>
-
-        <h2> What is Machine Learning  </h2>
-
-        <p> How does machine learn (train the model) 
-            <br> and what it's aim is (prediciting values from new data)
+        <!-- base level descriptions targeted towards people with zero or low experience with computers/tech industry -->
+        <h2>What is data science?</h2>
+        <p>
+            Data science is a type of computer programming that involves working with data. Your data is a valuable resource and data scientists can help you
+            extract insights and make predictions about the future, based on your past data.
+        </p>
+        <h2>What is machine learning?</h2>
+        <p> 
+            What we provide here at [APP NAME] is a simple platform for you to bring your data and experience the power of data science for yourself, without
+            needing your own team to write a solution.
+            <br>
+            With machine learning, the computer will take your data and apply an algorithm (calculations) to learn something based on your training dataset, and then use
+            this new knowledge to make predictions on new data. 
+        </p>
+        <h2>Train/Test split - what is it?</h2>
+        <p>
+            A dataset contains all your information, but we need a way to test our model so you can be confident in using it. When we train a model, we actually split the data into two parts, one 
+            part of the data gets used to train a model, and the other part will be held back. Then, once the model is trained, we use this "new" data (something the model hasn't seen before), and 
+            compare the answers it gets, with the answers we already had. Any differences can then be used to generate a score that tells you how good the model produced performs.
         </p>
     </div>
 
     <div class="content-middle"> 
-        content 1
+        <!-- https://unsplash.com/photos/ilSnKT1IMxE image from -->
+        <img src= "{{url_for('static', path='images/tutorial_img.jpg')}}" alt= "Glasses sitting on newspaper" width="400px" height="250px">
     </div>
 
     <div class="content-small"> 
-        <h2> How does training a model work?  </h2>
-
-        <p>Explain how it takes in the data from provided training dataset and this is used to train the model for their own data.
+        <h2>How does training work?</h2>
+        <p>
+            On the <a href="/train">training page</a>, you will upload your dataset that has the information you want to predict (label), as well as supporting information (features) you receive
+            as part of your business. For example, you might want to predict number of customers (label) and you currently keep a record of time of transactions, day of the week, weather (features).
+            In the training stage, you will upload your dataset that has the label and features. After telling us which part of the information you want to be
+            able to predict, the dataset will be submitted to a machine learning algorithm to learn about your business and train a model.  
+        </p>
+        <h2>How does predicting work?</h2>
+        <p>
+            A model is created after training is complete, this is a .pkl file. This model can then be used with future datasets you have to generate predictions. These future datasets just need
+            to contain the exact same columns as your original dataset, and can be data you have collected, or data that you are testing a theory (for example, you can create data with features you want to predict
+            their affect on your business would be). 
         </p>
     </div>
 </div>
