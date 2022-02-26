@@ -53,6 +53,7 @@ class Ml:
 
         filename = 'Trained.pkl'
         pickle.dump(self.regressor, open(filename, 'wb'))
+        print("prediction complete")
 
 # Predicting from saved model uploaded as pkl or whatever it might take else give out an error statement to inform user
     def prediction(self):
@@ -61,6 +62,7 @@ class Ml:
             file_name = self.prediction_filename
             model_reloaded = pickle.load(open(file_name, 'rb'))
             predicted  = model_reloaded.predict(self.prediction_values)
+            
             print(predicted)
         except Exception as e:
             print(e)
