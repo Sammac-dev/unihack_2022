@@ -14,3 +14,18 @@ def index():
     # code for home page here
     # if using page for processing need to use methods=['GET','POST'] in params
     return render_template('index.html')
+
+@app.route('/tutorial')
+def tutorial():
+
+    return render_template('tutorial.html')
+
+@app.route('/train')
+def train():
+
+    return render_template('train.html')
+
+@app.route('/predict')
+def predict():
+
+    return render_template('predict.html')
