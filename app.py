@@ -21,22 +21,22 @@ templates = Jinja2Templates(directory='./templates')
 
 # Home page
 @app.get('/')
-async def index(request: Request):
+def index(request: Request):
     return templates.TemplateResponse('index.html', {'request': request})
 
 # Tutorial page
 @app.get('/tutorial')
-async def tutorial(request: Request):
+def tutorial(request: Request):
     return templates.TemplateResponse('tutorial.html', {'request': request})
 
 # Training page
 @app.get('/train')
-async def train(request: Request):
+def train(request: Request):
     return templates.TemplateResponse('train.html', {'request': request})
 
 # Predict page
 @app.get('/predict')
-async def predict(request: Request):
+def predict(request: Request):
     return templates.TemplateResponse('predict.html', {'request': request})
 
 
