@@ -11,28 +11,17 @@
             class="form-horizontal">
 
             <div class="form-group">
-                <label for="name"> Upload CSV File: </label>
+                <label for="csv_filename">Path to your CSV file relative to app.py file:</label>
                 <div>
-                    <input type="file" name="csv_file" id="csv_file" required="True">
+                    <input type="text" name="csv_filename" id="csv_file" required="True">
                 </div>
-            </div>
-            <div>
-                <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3" style="margin-bottom:10px;">
-                    <button class="button"> <span style="margin-right:5px;"></span>Upload </button>
+                <label for="pkl_filename">Path to your PKL file relative to app.py file:</label>
+                <div>
+                    <input type="text" name="pkl_filename" id="pkl_file" required="True">
                 </div>
+                <br>
+                <br>
             </div>
-
-            <label for="name"> Upload .pkl of model: </label>
-            <br>
-            <br>
-            <input type="file" name="csv_file" id="csv_file" required="True">
-            <br>
-            <br>
-            <button class="button"> <span style="margin-right:5px;"></span>Upload </button>
-
-            <br>
-            <br>
-
             <button class="button-2"> <span style="margin-right:5px;"></span>Predict </button>
 
             <p><span style= "color:red"> NOTE: Please ensure that the columns match accurately </span></p>

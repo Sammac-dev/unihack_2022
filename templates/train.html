@@ -11,61 +11,37 @@
             class="form-horizontal">
 
             <div class="form-group">
-                <label for="name"> Upload CSV File: </label>
+                <label for="filename">Path to your CSV file relative to app.py file:</label>
                 <div>
-                    <input type="file" name="csv_file" id="csv_file" required="True">
+                    <input type="text" name="filename" id="csv_file" required="True">
                 </div>
             </div>
-            <div>
-                <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3" style="margin-bottom:10px;">
-                    <button class="button"> <span style="margin-right:5px;"></span>Upload </button>
-                </div>
-            </div>
-
-
             <p>Select Model:</p>
-              <input type="radio" id="linearmodel" name="linearmodel" value="Linear Model">
-              <label for="linermodel">Linear Model</label><br>
-              <input type="radio" id="regression" name="logregression" value="logregression">
+              <input type="radio" id="linearmodel" name="model" value="Linear Model" required>
+              <label for="linearmodel">Linear Model</label><br>
+              <input type="radio" id="regression" name="model" value="logregression">
               <label for="logregression"> Logistic Regression</label><br>
 
             <br>
             <br>
 
-            Select Target Column: <select name="subject" id="subject">
+            <label for="target">Select Target Column: </label>
+            <input type="text" id="target" name="target">
 
-                <option value="" selected="selected">1</option>
-                <option value="" selected="selected">2</option>
-                <option value="" selected="selected">3</option>
-                <option value="" selected="selected">Select target column</option>
-
-
-            </select>
             <br>
             <br>
 
-            Select train test split: <select name="train_test" id="train_test">
+            Select train test split: <select name="testSize" id="train_test">
 
-                <option value="" selected="selected">80:20</option>
-                <option value="" selected="selected">70:30</option>
-                <option value="" selected="selected">60:40</option>
+                <option value="0.2" selected="selected">80:20</option>
+                <option value="0.3" selected="selected">70:30</option>
+                <option value="0.4" selected="selected">60:40</option>
                 <option value="" selected="selected">Select train test split</option>
             </select>
 
             <br>
             <br>
 
-            Select scoring metrics: <select name="metric" id="metric">
-                <option value="" selected="selected">r-squared</option>
-                <option value="" selected="selected">Root mean squared (RMSE)</option>
-                <option value="" selected="selected">Mean Absolute Error (MAE)</option>
-                <option value="" selected="selected">Select scoring metrics</option>
-            </select>
-
-
-
-            <br>
-            <br>
             <button class="button-2"> <span style="margin-right:5px;"></span>Run </button>
 
 
