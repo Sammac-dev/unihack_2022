@@ -57,8 +57,8 @@ class Ml:
         r2_score = self.score()
         print(r2_score)
 
-        app.bench_score = 0 #Replace 0 with Benchmark Score once feature added
-        app.score = r2_score
+        app.score = r2_score # R Squared
+        app.score2 = 0 #RMSE
         app.out_file = filename
         app.model_complete = True
 

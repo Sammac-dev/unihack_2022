@@ -25,7 +25,7 @@ out_file = ""
 test_size = 0
 model_target = ""
 score = 0
-bench_score = 0
+score2 = 0
 
 # mount the static directory
 app.mount('/static', StaticFiles(directory='./static'), name='static')
@@ -91,7 +91,7 @@ def training_complete(request: Request):
     global test_size
     global model_target
     global score
-    global bench_score
+    global score2
 
 
     if model_complete is True:
@@ -102,9 +102,11 @@ def training_complete(request: Request):
 def predict(request: Request):
     return templates.TemplateResponse('predict.html', {'request': request})
 
-# @app.get('/predict')
-# async def predict(request: Request, background_tasks : BackgroundTasks, model_path : str, data_path : str):
-#     pass
+@app.get('/predict')
+async def predict(request: Request, background_tasks : BackgroundTasks, model_path : str = Form("model_path"), data_path : str = Form("data_path")):
+
+
+    pass
 
 
 
