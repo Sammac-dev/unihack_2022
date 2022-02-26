@@ -50,8 +50,8 @@ async def train(request: Request, model: str, filename:str, train_size:float, ta
         ml.load_x_y()
 
         if not ml.x.empty and not ml.y.empty:
-            background_tasks.add_task(ml.training())
-            return templates.TemplateResponse('train.html', {'request': request})
+            background_tasks.add_task(ml.training)
+            return templates.TemplateResponse('train-pending.html', {'request': request})
         else:
             print("Dataset doesn't have the target feature.")
 
