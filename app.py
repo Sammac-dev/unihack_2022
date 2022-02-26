@@ -82,7 +82,7 @@ async def train(request: Request, background_tasks : BackgroundTasks, model: str
     else:
         print("Error Reading file. Please check the name of the file.")
 
-@app.post('/training-complete')
+@app.get('/training-complete')
 def training_complete(request: Request):
     global model_complete
     global ml_model
@@ -101,6 +101,11 @@ def training_complete(request: Request):
 @app.get('/predict')
 def predict(request: Request):
     return templates.TemplateResponse('predict.html', {'request': request})
+
+# @app.get('/predict')
+# async def predict(request: Request, background_tasks : BackgroundTasks, model_path : str, data_path : str):
+#     pass
+
 
 
 if __name__ == '__main__':
