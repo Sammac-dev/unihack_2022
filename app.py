@@ -1,7 +1,7 @@
 # import required libraries for program
 from fileinput import filename
 from statistics import mode
-from fastapi import FastAPI, Request, BackgroundTasks
+from fastapi import FastAPI, Request, BackgroundTasks, Form
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -19,12 +19,13 @@ app = FastAPI()
 
 # initialize model_complete as False and confirmation page variables
 model_complete = False
-mLmodel = ""
+ml_model = ""
 in_file = ""
 out_file = ""
 test_size = 0
 model_target = ""
 score = 0
+bench_score = 0
 
 # mount the static directory
 app.mount('/static', StaticFiles(directory='./static'), name='static')
@@ -39,9 +40,6 @@ def index(request: Request):
 # Tutorial page
 @app.get('/tutorial')
 def tutorial(request: Request):
-    print("tutorial Page")
-    global model_complete
-    print("5",model_complete)
     return templates.TemplateResponse('tutorial.html', {'request': request})
 
 # Training page
@@ -50,18 +48,21 @@ def train(request: Request):
     return templates.TemplateResponse('train.html', {'request': request})
 
 @app.post('/train')
-async def train(request: Request, model: str, filename:str, testSize:float, target: str,background_tasks : BackgroundTasks):
-    global mLmodel
+async def train(request: Request, background_tasks : BackgroundTasks, model: str = Form("model"), filename:str = Form("filename"), 
+                testSize:float = Form("testSize"), target: str = Form("model")):
+    global ml_model
     global model_complete
     global in_file 
     global test_size
     global model_target
 
     model_target = target
-    mLmodel = model
+    ml_model = model
     in_file = filename
     test_size = testSize
-    print("Filename: ", filename)
+
+    print("Filename: ", in_file)
+    print(ml_model)
     
     load = Ml(filename=filename)
     df = load.read_csv()
@@ -71,7 +72,7 @@ async def train(request: Request, model: str, filename:str, testSize:float, targ
         ml.load_x_y()
 
         model_complete = False
-        print("2", model_complete)
+        
         if not ml.x.empty and not ml.y.empty:
             background_tasks.add_task(ml.training)
             return templates.TemplateResponse('train-pending.html', {'request': request})
@@ -84,12 +85,17 @@ async def train(request: Request, model: str, filename:str, testSize:float, targ
 @app.post('/training-complete')
 def training_complete(request: Request):
     global model_complete
-    global in_file 
+    global ml_model
+    global in_file
+    global out_file
     global test_size
     global model_target
-    
-    
-    return templates.TemplateResponse('training-complete.html', {'request': request})
+    global score
+    global bench_score
+
+
+    if model_complete is True:
+        return templates.TemplateResponse('training-complete.html', {'request': request})
 
 # Predict page
 @app.get('/predict')

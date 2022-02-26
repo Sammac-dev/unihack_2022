@@ -56,7 +56,8 @@ class Ml:
         print("prediction complete")
         r2_score = self.score()
         print(r2_score)
-        
+
+        app.bench_score = 0 #Replace 0 with Benchmark Score once feature added
         app.score = r2_score
         app.out_file = filename
         app.model_complete = True
