@@ -15,10 +15,16 @@
 
 {% block script %}
 <script>
+    // every 1000 interval, recheck via status_check page that model_complete is true or false
     setInterval(function(){ 
     //run this code on an interval
-    $.get("/status_check", {model_complete});
-    console.log(model_complete);
-    }, 10000);
+    $.get("/status_check", function(model_complete){
+        console.log(model_complete);
+        // if true, redirect to displaying result page 
+        if (model_complete){
+            window.location.replace('/training-complete');
+        }
+    })
+    }, 1000);
 </script>
 {% endblock %}
