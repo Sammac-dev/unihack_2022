@@ -1,5 +1,4 @@
 import pandas as pd
-from starlette.responses import RedirectResponse
 
 
 # MAIN CLASS FOR LINEAR REGRESSION
@@ -45,7 +44,6 @@ class Ml:
     def training(self):
         from sklearn.model_selection import train_test_split
         from sklearn.linear_model import LinearRegression
-        # from app import model_complete
         import app
         import pickle
 
@@ -59,11 +57,10 @@ class Ml:
         r2_score = self.score()
         print(r2_score)
 
-        
-        print("3",app.model_complete)
         app.model_complete = True
-        print("4", app.model_complete)
-        response = RedirectResponse(url='/tutorial')
+        app.score = r2_score
+        app.out_file = filename
+
         
 
     def score(self):

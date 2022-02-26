@@ -22,8 +22,9 @@ model_complete = False
 model = ""
 in_file = ""
 out_file = ""
-train_size = 0
+test_size = 0
 target = ""
+score = 0
 
 # mount the static directory
 app.mount('/static', StaticFiles(directory='./static'), name='static')
@@ -49,14 +50,17 @@ def train(request: Request):
     return templates.TemplateResponse('train.html', {'request': request})
 
 @app.post('/train')
-async def train(request: Request, model: str, filename:str, train_size:float, target: str,background_tasks : BackgroundTasks):
+async def train(request: Request, model: str, filename:str, testSize:float, target: str,background_tasks : BackgroundTasks):
     global model_complete
-    # print("1",model_complete)
+    global in_file 
+    global test_size
+
+    in_file = filename
+    test_size = testSize
     print("Filename: ", filename)
-    print("Train_size Type: ", type(train_size))
+    
     load = Ml(filename=filename)
     df = load.read_csv()
-    # print(df)
 
     if not df.empty:
         ml = Ml(dataframe=df, target_column=target)
@@ -86,3 +90,9 @@ def predict(request: Request):
 if __name__ == '__main__':
     # runs the uvicorn web server for the application to run 
     uvicorn.run('app:app', host='127.0.0.1', port=8000, reload=True)
+
+
+@app.get("/status_check")
+def status(request: Request):
+    global model_complete
+    return model_complete # returns True or False
