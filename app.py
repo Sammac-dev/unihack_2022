@@ -19,11 +19,11 @@ app = FastAPI()
 
 # initialize model_complete as False and confirmation page variables
 model_complete = False
-model = ""
+mLmodel = ""
 in_file = ""
 out_file = ""
 test_size = 0
-target = ""
+model_target = ""
 score = 0
 
 # mount the static directory
@@ -51,10 +51,14 @@ def train(request: Request):
 
 @app.post('/train')
 async def train(request: Request, model: str, filename:str, testSize:float, target: str,background_tasks : BackgroundTasks):
+    global mLmodel
     global model_complete
     global in_file 
     global test_size
+    global model_target
 
+    model_target = target
+    mLmodel = model
     in_file = filename
     test_size = testSize
     print("Filename: ", filename)
@@ -78,7 +82,13 @@ async def train(request: Request, model: str, filename:str, testSize:float, targ
         print("Error Reading file. Please check the name of the file.")
 
 @app.post('/training-complete')
-def training_complete(request: Request, model: str, in_file:str,out_file:str,train_size:float,target:str):
+def training_complete(request: Request):
+    global model_complete
+    global in_file 
+    global test_size
+    global model_target
+    
+    
     return templates.TemplateResponse('training-complete.html', {'request': request})
 
 # Predict page

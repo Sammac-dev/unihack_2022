@@ -56,10 +56,10 @@ class Ml:
         print("prediction complete")
         r2_score = self.score()
         print(r2_score)
-
-        app.model_complete = True
+        
         app.score = r2_score
         app.out_file = filename
+        app.model_complete = True
 
         
 
