@@ -19,9 +19,6 @@
     //run this code on an interval
     $.get("/status_check", {model_complete});
     console.log(model_complete);
-    if (model_complete == False){
-        window.location.href = '/training_complete';
-    }
     }, 10000);
 </script>
 {% endblock %}
