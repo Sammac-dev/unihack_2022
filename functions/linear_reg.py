@@ -40,14 +40,8 @@ class Ml:
             self.y = 0
             print(e)
 
-    # splitting the database into training and testing df
-    def train_test_split(self):
-        from sklearn.model_selection import train_test_split
-        self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(self.x, self.y, test_size=self.test_size
-                                                                                , random_state=0)
-
     # Training the model pretty straightforward
-    async def training(self):
+    def training(self):
         from sklearn.model_selection import train_test_split
         from sklearn.linear_model import LinearRegression
         import pickle
@@ -66,8 +60,8 @@ class Ml:
         try:
             file_name = self.prediction_filename
             model_reloaded = pickle.load(open(file_name, 'rb'))
-            model_reloaded.predict(self.prediction_values)
-            print(predicting_values)
+            predicted  = model_reloaded.predict(self.prediction_values)
+            print(predicted)
         except Exception as e:
             print(e)
 
@@ -75,23 +69,26 @@ class Ml:
 # TEST CODE WITHOUT ANY VALUES PLEASE INSERT THE VARIABLES TO MAKE SURE IT RUNS WITHOUT ERRORS
 if __name__ == '__main__':
     # Loading and Training Model and Saving it
-    filename = ""  # Load the user's csv file name
-    target = "Target Name"  # The target name for the prediction From User's Input or passing it back
+    filename = "Salary_Data.csv"  # Load the user's csv file name
+    target = "Salary"  # The target name for the prediction From User's Input or passing it back
     load = Ml(filename=filename)
     df = load.read_csv()
-    if df == None:
-        print("Error Reading file. Please check the name of the file.")
-    else:
+    if not df.empty:
         ml = Ml(dataframe=df, target_column=target)
         ml.load_x_y()
-        if ml.x != 0 and ml.y != 0:
+
+        if not ml.x.empty and not ml.y.empty:
             ml.training()
         else:
             print("Dataset doesn't have the target feature.")
 
+    else:
+        print("Error Reading file. Please check the name of the file.")
+
     # PREDCTION PART
 
-    model_name = ""  # User Uploaded file
-    predicting_values = pd.DataFrame()  # User predicting set of values
+    model_name = "Trained.pkl"  # User Uploaded file
+    predicting_values = ml.x  # User predicting set of values
+
     predicting = Ml(pred_file_name=model_name, prediction_values=predicting_values)
     predicting.prediction()
