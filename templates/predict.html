@@ -1,7 +1,52 @@
 {% extends "base.html" %}
 {% block body %}
-<link rel="stylesheet" href="{{url_for('static', path='style_predict.css')}}" type="text/css" media="all"/> 
-<h1>testing predict page</h1>
-<!-- Put yo HTML code here -->
+<link rel="stylesheet" href="{{url_for('static', path='style_prediction.css')}}" type="text/css" media="all"/> 
+<div class="container">
 
+    <div class="content-large"> </div>
+
+    <div class="content-middle">
+
+        <form action="/predict" method="POST" enctype="multipart/form-data"
+            class="form-horizontal">
+
+            <div class="form-group">
+                <label for="name"> Upload CSV File: </label>
+                <div>
+                    <input type="file" name="csv_file" id="csv_file" required="True">
+                </div>
+            </div>
+            <div>
+                <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3" style="margin-bottom:10px;">
+                    <button class="button"> <span style="margin-right:5px;"></span>Upload </button>
+                </div>
+            </div>
+
+
+
+<label for="name"> Upload .pkl of model: </label>
+<br>
+<br>
+<input type="file" name="csv_file" id="csv_file" required="True">
+<br>
+<br>
+<button class="button"> <span style="margin-right:5px;"></span>Upload </button>
+
+            <br>
+            <br>
+
+
+            
+            <button class="button-2"> <span style="margin-right:5px;"></span>Predict </button>
+
+<p><span style= "color:red"> NOTE: Please ensure that the columns match accurately </span></p>
+        </form>
+
+    </div>
+
+
+    <div class="content-small">
+
+    </div>
+</div>
 {% endblock %}
