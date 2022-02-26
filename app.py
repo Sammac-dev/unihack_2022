@@ -8,7 +8,6 @@ import uvicorn
 from functions.linear_reg import Ml
 import pandas as pd
 
-# import pandas as pd
 # from sklearn.datasets import load_files
 # import pickle
 # import os
@@ -58,7 +57,10 @@ async def train(request: Request, model: str, filename:str, train_size:float, ta
     else:
         print("Error Reading file. Please check the name of the file.")
 
-
+# Pending page
+@app.get('/pending')
+def pending(request: Request):
+    return templates.TemplateResponse('train-pending.html', {'request': request})
 
 
     # if not df.empty:

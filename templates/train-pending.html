@@ -1,9 +1,18 @@
 {% extends "base.html" %}
 {% block body %}
-<link rel="stylesheet" href="{{url_for('static', path='style_train.css')}}" type="text/css" media="all"/> 
-<h1>testing train-pending page</h1>
-<!-- Put yo HTML code here -->
-<p>
-    loading screen, this is the JS page for the waiting for the model to be finsihed
-</p>
+<link rel="stylesheet" href="{{url_for('static', path='style_pending.css')}}" type="text/css" media="all"/> 
+<div class="container"> 
+
+    <h1>Please wait... Your model is training!</h1>
+    <p>
+        loading screen, this is the JS page for the waiting for the model to be finsihed
+    </p>
+
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    
+</script>
 {% endblock %}
