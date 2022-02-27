@@ -46,8 +46,8 @@ li{
     grid-template-rows: 100px 1fr 1fr 100px;
 
     /* gap:10px;  */
-    padding:10px;  
-    box-sizing:border-box;
+    /* padding:10px;  
+    box-sizing:border-box; */
 }
 
 
@@ -78,7 +78,7 @@ grid-column-end: 4;
     grid-column-start: 2;
     grid-column-end: 3;
     /* border: 1px solid #fff; */
-    margin-top: 10px;
+   
 }
 
 
