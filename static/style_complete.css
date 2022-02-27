@@ -31,8 +31,6 @@ li{
     display: inline;
 }
 
-
-
 .container{
     width: 100vw; 
     height:100vh;
@@ -62,8 +60,6 @@ grid-column-start: 1;
 grid-column-end: 4;
 }
 
-
-
 .content-large {
     grid-row-start: 2;
     grid-row-end: span 2;
@@ -73,9 +69,10 @@ grid-column-end: 4;
 
 .content-middle {
     grid-row-start: 2;
-    grid-row-end: span 2;
+    grid-row-end: span 2.5;
     grid-column-start: 2;
-    grid-column-end: 3;
+    grid-column-end: 3.5;
+    text-align: center;
 }
 
 
@@ -85,8 +82,3 @@ grid-column-end: 4;
     grid-column-start: 3;
     grid-column-end: 4;
 }
-.footer {
-    grid-column-start: 1;
-    grid-column-end: span 3;
-}
-

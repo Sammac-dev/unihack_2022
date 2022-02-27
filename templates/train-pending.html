@@ -4,15 +4,18 @@
 
 <div class="container"> 
 
-    <h1>Please wait... Your  {{ to_display[1] }} is training!</h1>
-    <p>
-        <!-- https://www.behance.net/gallery/31234507/Open-source-Loading-GIF-Icons-Vol-1 loading -->
-        <img src= "{{url_for('static', path='images/loading.gif')}}" alt= "Loading" width="400px" height="250px">
-    </p>
-    <p>Learning how to predict: {{ to_display[0] }}</p>
-    <p>Your input file: {{ to_display[2] }}</p>
-    <p>Proportion of test data: {{ to_display[3] }}</p>
-
+    <div class="content-large" ></div>
+    <div class="content-middle">
+        <h1><span style="color: #FFEE93" >Please wait... Your  {{ to_display[1] }} is training!</span></h1>
+        <p>
+            <!-- https://www.behance.net/gallery/31234507/Open-source-Loading-GIF-Icons-Vol-1 loading -->
+            <img src= "{{url_for('static', path='images/loading.gif')}}" alt= "Loading" width="400px" height="250px">
+        </p>
+        <p>Learning how to predict: {{ to_display[0] }}</p>
+        <p>Your input file: {{ to_display[2] }}</p>
+        <p>Proportion of test data: {{ to_display[3] }}</p>
+    </div>
+    <div class="content-small"></div>
 </div>
 {% endblock %}
 

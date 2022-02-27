@@ -8,9 +8,7 @@
 
     
     <div class="content-middle">
-        <h1> <span style ="text-align: center"> Training Data Upload Page  </h1> </span>
-        <br>
-        <br>
+        <h1> <span style ="text-align: center; color: #C97B84;"> Training Data Upload Page  </h1> </span>
 
         <form action="/train" method="POST" enctype="multipart/form-data"
             class="form-horizontal">
@@ -29,7 +27,7 @@
               <label for="logregression"> Logistic Regression [in development]</label><br>
               <p>Time Series Models</p>
               <input type="radio" id="ts" name="model" value="ts" disabled>
-              <label for="ts">Autoregressive integrated moving average (ARIMAX) [in development]</label><br>
+              <label for="ts">ARIMAX [in development]</label><br>
               <input type="radio" id="ts2" name="model" value="ts2" disabled>
               <label for="ts2"> Moving average [in development]</label><br>
               <p>Deep Learning Models</p>
@@ -38,7 +36,6 @@
               <input type="radio" id="dl2" name="model" value="dl2" disabled>
               <label for="dl2">Recurrent neural networks (RNN) [in development]</label><br>
 
-            <br>
             <br>
 
             <label for="target">Enter name of target column: </label>

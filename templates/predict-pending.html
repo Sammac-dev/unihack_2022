@@ -2,17 +2,19 @@
 {% block body %}
 <link rel="stylesheet" href="{{url_for('static', path='style_predict_pending.css')}}" type="text/css" media="all"/> 
 
-<div class="container"> 
+<div class="container">
+    <div class="content-large" ></div>
+    <div class="content-middle">
+        <h1><span style="color: #FFEE93" >Please wait... Your model is predicting!</span></h1>
+        <p>
+            <!-- https://www.behance.net/gallery/31234507/Open-source-Loading-GIF-Icons-Vol-1 loading -->
+            <img src= "{{url_for('static', path='images/loading.gif')}}" alt= "Loading" width="400px" height="250px">
+        </p>
 
-    <h1>Please wait... Your model is predicting!</h1>
-    <p>
-        <!-- https://www.behance.net/gallery/31234507/Open-source-Loading-GIF-Icons-Vol-1 loading -->
-        <img src= "{{url_for('static', path='images/loading.gif')}}" alt= "Loading" width="400px" height="250px">
-    </p>
-
-    <p>Your data we are generating predictions for: {{ to_display[0] }}</p>
-    <p>Using the model as stored in the provided: {{ to_display[1] }}</p>
-
+        <p>Your data we are generating predictions for: {{ to_display[0] }}</p>
+        <p>Using the model as stored in the provided: {{ to_display[1] }}</p>
+    </div>
+    <div class="content-small"></div>
 </div>
 {% endblock %}
 
