@@ -1,38 +1,130 @@
-{% extends "base.html" %}
-{% block body %}
-<link rel="stylesheet" href="{{url_for('static', path='style_prediction.css')}}" type="text/css" media="all"/> 
-<div class="container">
- 
-    <div class="content-large"> </div>
 
-    <div class="content-middle">
-        <h1> <span style ="text-align: center"> Prediction Data Page  </h1> </span>
-        <br>
-        <br>
-        <form action="/predict" method="POST" enctype="multipart/form-data"
-            class="form-horizontal">
+.header {
+    list-style-type: none;
+  margin: 0;
+  padding: 0;
+ background-color:cornsilk;
+overflow: hidden;
+}
 
-            <div class="form-group">
-                <label for="data_path">Path to your CSV file relative to app.py file:</label>
-                <div>
-                    <input type="text" name="data_path" id="csv_file" required="True">
-                </div>
-                <label for="model_path">Path to your PKL file relative to app.py file:</label>
-                <div>
-                    <input type="text" name="model_path" id="pkl_file" required="True">
-                </div>
-                <br>
-                <br>
-            </div>
-            <button class="button-2"> <span style="margin-right:5px;"></span>Predict </button>
+.header a {
+    float: left; 
+    color:#9FC490; 
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 15px;
+    font-family:Arial, Helvetica, sans-serif;
+}
 
-            <p><span style= "color:red"> NOTE: Please ensure that the columns match accurately </span></p>
-        </form>
+.header a:hover{
+    background-color:darkgray;
+    color: black;
+}
 
-    </div>
+.header a.home {
+    background-color: #82A3A1;
+    color: white;
+}
 
-    <div class="content-small">
+li{
+    display: inline;
+}
 
-    </div>
-</div>
-{% endblock %}
+
+
+.container{
+    width: 100vw; 
+    height:100vh;
+    font-family: 'Quicksand',sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 100px 1fr 1fr 100px;
+
+    /* gap:10px;  */
+     /* padding:10px;   */
+    box-sizing:border-box;
+}
+
+
+.container div {
+    padding:10px; 
+    /* border: 1px solid #000; */
+    background-color:#011936;
+}
+
+.header{
+grid-column-start: 1;
+grid-column-end: 4;
+}
+
+
+
+
+.content-large {
+    grid-row-start: 2;
+    grid-row-end: span 2;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    /* border: 1px solid #fff; */
+}
+
+.content-middle {
+    grid-row-start: 2;
+    grid-row-end: span 2;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    /* border: 1px solid #fff; */
+    margin-top: 10px;
+}
+
+
+.content-small {
+    grid-row-start: 2;
+    grid-row-end: span 2;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    /* border: 1px solid #fff; */
+}
+
+
+
+.footer {
+    grid-column-start: 1;
+    grid-column-end: span 3;
+    border: 1px solid #fff; 
+}
+
+.button {
+    background-color: #C97B84;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    position: static;
+    margin-left: 20px;
+  }
+
+  h1 {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    text-align: justify;
+}
+
+body{
+    background-image: "url('static', path='images/machine_learning.jpg')";
+}
