@@ -22,11 +22,22 @@
                 </div>
             </div>
             <p>Select Model:</p>
+              <p>Cross-Sectional Models</p>
               <input type="radio" id="linearmodel" name="model" value="Linear Model" required>
               <label for="linearmodel">Linear Model</label><br>
-              <input type="radio" id="regression" name="model" value="logregression">
-              <label for="logregression"> Logistic Regression</label><br>
-<!-- cross-sectional models ^ ,time series models (ARIMAX, etc. ), deep learning models (neutral network types etc.) -->
+              <input type="radio" id="regression" name="model" value="logregression" disabled>
+              <label for="logregression"> Logistic Regression [in development]</label><br>
+              <p>Time Series Models</p>
+              <input type="radio" id="ts" name="model" value="ts" disabled>
+              <label for="ts">Autoregressive integrated moving average (ARIMAX) [in development]</label><br>
+              <input type="radio" id="ts2" name="model" value="ts2" disabled>
+              <label for="ts2"> Moving average [in development]</label><br>
+              <p>Deep Learning Models</p>
+              <input type="radio" id="dl" name="model" value="dl" disabled>
+              <label for="dl">Convolutional neural networks (CNN) [in development]</label><br>
+              <input type="radio" id="dl2" name="model" value="dl2" disabled>
+              <label for="dl2">Recurrent neural networks (RNN) [in development]</label><br>
+
             <br>
             <br>
 
