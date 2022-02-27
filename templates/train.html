@@ -21,7 +21,7 @@
               <label for="linearmodel">Linear Model</label><br>
               <input type="radio" id="regression" name="model" value="logregression">
               <label for="logregression"> Logistic Regression</label><br>
-
+<!-- cross-sectional models ^ ,time series models (ARIMAX, etc. ), deep learning models (neutral network types etc.) -->
             <br>
             <br>
 
@@ -32,11 +32,9 @@
             <br>
 
             Select train test split: <select name="testSize" id="train_test">
-
                 <option value="0.2" selected="selected">80:20</option>
                 <option value="0.3" selected="selected">70:30</option>
                 <option value="0.4" selected="selected">60:40</option>
-                <option value="" selected="selected">Select train test split</option>
             </select>
 
             <br>
