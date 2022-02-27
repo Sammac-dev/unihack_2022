@@ -3,10 +3,12 @@
 <link rel="stylesheet" href="{{url_for('static', path='style_complete.css')}}" type="text/css" media="all"/> 
 <div class="container"> 
 
-    <h1>Your model is finished!</h1>
-    <p>
-        Model has finished running
-    </p>
+    <h1>Your {{ to_display[0] }} is finished!</h1>
+    <p>Your model can predict: {{ to_display[4] }}</p>
+    <p>Proportion of test data: {{ to_display[3] }}</p>
+    <p>This model scored: {{ to_display[1]|round(2) }} as a R-squared value</p>
+    <p>This model scored: {{ to_display[2]|round(2) }} as a Root Mean Squared Error (RMSE) value</p>
+    <p>Your model has been downloaded in the same location as app.py! You are looking for the file named: {{ to_display[5] }} </p>
 
 </div>
 {% endblock %}

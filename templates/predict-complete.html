@@ -4,9 +4,9 @@
 <div class="container"> 
 
     <h1>Your model is finished!</h1>
-    <p>
-        Model has finished running
-    </p>
+    <p>You provided us with this data: {{ to_display[0] }}</p>
+    <p>Using the model trained and stored: {{ to_display[2] }}</p>
+    <p>We generated this file, found in the same location as app.py named: {{ to_display[1] }}</p>
 
 </div>
 {% endblock %}

@@ -81,7 +81,7 @@ async def train(request: Request, background_tasks : BackgroundTasks, model: str
         
         if not ml.x.empty and not ml.y.empty:
             background_tasks.add_task(ml.training)
-            return templates.TemplateResponse('train-pending.html', {'request': request})
+            return templates.TemplateResponse('train-pending.html', {'request': request, 'to_display':[model_target, ml_model, in_file, test_size]})
         else:
             print("Dataset doesn't have the target feature.")
 
@@ -101,7 +101,7 @@ def training_complete(request: Request):
 
 
     if model_complete is True:
-        return templates.TemplateResponse('training-complete.html', {'request': request})
+        return templates.TemplateResponse('training-complete.html', {'request': request, 'to_display':[ml_model, score, score2, test_size, model_target, out_file]})
 
 # Predict page
 @app.get('/predict')
@@ -128,14 +128,14 @@ async def predict(request: Request, background_tasks : BackgroundTasks, model_pa
     predicting = Ml(pred_file_name=model_path, prediction_values=pred_df)
     background_tasks.add_task(predicting.prediction)
 
-    return templates.TemplateResponse('predict-pending.html', {'request': request})
+    return templates.TemplateResponse('predict-pending.html', {'request': request, 'to_display':[pred_in, model_in]})
 
 @app.get('/predict-complete')
 def predict_complete(request: Request):
     global model_complete
 
     if model_complete is True:
-        return templates.TemplateResponse('predict-complete.html', {'request': request})
+        return templates.TemplateResponse('predict-complete.html', {'request': request, 'to_display': [pred_in, pred_out, model_in]})
 
 if __name__ == '__main__':
     # runs the uvicorn web server for the application to run 

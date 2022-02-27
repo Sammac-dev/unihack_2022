@@ -4,11 +4,14 @@
 
 <div class="container"> 
 
-    <h1>Please wait... Your model is training!</h1>
+    <h1>Please wait... Your  {{ to_display[1] }} is training!</h1>
     <p>
-        <!-- https://www.demilked.com/gif-animations-replace-loading-screen/  red loading -->
-        <img src= "{{url_for('static', path='images/loading_red.gif')}}" alt= "Loading" width="400px" height="250px">
+        <!-- https://www.behance.net/gallery/31234507/Open-source-Loading-GIF-Icons-Vol-1 loading -->
+        <img src= "{{url_for('static', path='images/loading.gif')}}" alt= "Loading" width="400px" height="250px">
     </p>
+    <p>Learning how to predict: {{ to_display[0] }}</p>
+    <p>Your input file: {{ to_display[2] }}</p>
+    <p>Proportion of test data: {{ to_display[3] }}</p>
 
 </div>
 {% endblock %}
@@ -25,6 +28,6 @@
             window.location.replace('/training-complete');
         }
     })
-    }, 1000);
+    }, 5000);
 </script>
 {% endblock %}
